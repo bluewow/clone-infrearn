@@ -41,7 +41,7 @@ public class ExceptionLogUtil {
         }
 
         return Arrays.stream(trace)
-                .filter(el -> el.getClassName().contains("connect")) // 패키지 필터
+                .filter(el -> el.getClassName().contains("inflearn")) // 패키지 필터
                 .limit(10)
                 .map(StackTraceElement::toString)
                 .collect(Collectors.joining(" | "));
