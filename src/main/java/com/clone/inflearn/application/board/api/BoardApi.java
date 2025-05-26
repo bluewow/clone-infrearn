@@ -7,8 +7,12 @@ import com.clone.inflearn.application.board.facade.BoardFacade;
 import com.clone.inflearn.util.dto.ApiResponse;
 import com.clone.inflearn.util.exception.CustomException;
 import com.clone.inflearn.util.exception.ErrorCode;
+import com.clone.inflearn.util.wrapper.PageWrapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -52,6 +56,11 @@ public class BoardApi {
 
         // 게시판 조회 로직
         return ApiResponse.success(boardFacade.getBoard(id));
+    }
+
+    @GetMapping("/board")
+    public ApiResponse<PageWrapper<BoardResponse>> getBoards(Pageable pageable) {
+        return ApiResponse.success(boardFacade.getBoards(pageable));
     }
 
 }

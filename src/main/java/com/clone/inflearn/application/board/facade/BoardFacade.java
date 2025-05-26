@@ -4,9 +4,15 @@ import com.clone.inflearn.application.board.domain.Board;
 import com.clone.inflearn.application.board.dto.BoardRequest;
 import com.clone.inflearn.application.board.dto.BoardResponse;
 import com.clone.inflearn.application.board.service.BoardService;
+import com.clone.inflearn.util.wrapper.PageWrapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
@@ -34,5 +40,16 @@ public class BoardFacade {
         Board board = boardService.getBoardId(id);
 
         return new BoardResponse(board.getId(), board.getTitle(), board.getContent());
+    }
+
+    public PageWrapper<BoardResponse> getBoards(Pageable pageable) {
+        Page<Board> boards = boardService.getBoards(pageable);
+
+        return new PageWrapper<>(
+                boards.getTotalElements(),
+                boards.getTotalPages(),
+                boards.getContent().stream()
+                        .map(BoardResponse::new)
+                        .toList());
     }
 }
