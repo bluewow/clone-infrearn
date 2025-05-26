@@ -24,4 +24,9 @@ public class BoardFacade {
         Board board = boardService.getBoardId(boardId);
         board.delete();
     }
+
+    public void updateBoard(BoardRequest request) {
+        Board targetBoard = boardService.getBoardId(request.boardId);
+        targetBoard.update(request.title, request.content);
+    }
 }

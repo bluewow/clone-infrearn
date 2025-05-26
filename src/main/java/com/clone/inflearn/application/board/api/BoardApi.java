@@ -8,10 +8,7 @@ import com.clone.inflearn.util.dto.ApiResponse;
 import com.clone.inflearn.util.exception.CustomException;
 import com.clone.inflearn.util.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,6 +34,12 @@ public class BoardApi {
 
         // 게시판 삭제 로직
         boardFacade.deleteBoard(boardId);
+        return ApiResponse.success();
+    }
+
+    @PutMapping("/board")
+    public ApiResponse<Void> updateBoard(@RequestBody BoardRequest request) {
+        boardFacade.updateBoard(request);
         return ApiResponse.success();
     }
 
