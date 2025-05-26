@@ -2,6 +2,7 @@ SET
 FOREIGN_KEY_CHECKS = 0;
 
 truncate table user;
+truncate table board;
 
 SET
 FOREIGN_KEY_CHECKS = 1;

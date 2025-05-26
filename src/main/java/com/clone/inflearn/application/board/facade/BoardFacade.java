@@ -19,4 +19,9 @@ public class BoardFacade {
 
         return new BoardResponse(board.getId());
     }
+
+    public void deleteBoard(Long boardId) {
+        Board board = boardService.getBoardId(boardId);
+        board.delete();
+    }
 }
