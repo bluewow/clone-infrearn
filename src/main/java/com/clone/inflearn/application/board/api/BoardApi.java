@@ -43,4 +43,15 @@ public class BoardApi {
         return ApiResponse.success();
     }
 
+    @GetMapping("/board/{id}")
+    public ApiResponse<BoardResponse> getBoard(@PathVariable Long id) {
+        // 유효성 검사
+        if (id == null) {
+            throw new CustomException(ErrorCode.INVALID_PARAM);
+        }
+
+        // 게시판 조회 로직
+        return ApiResponse.success(boardFacade.getBoard(id));
+    }
+
 }

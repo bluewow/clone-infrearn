@@ -29,4 +29,10 @@ public class BoardFacade {
         Board targetBoard = boardService.getBoardId(request.boardId);
         targetBoard.update(request.title, request.content);
     }
+
+    public BoardResponse getBoard(Long id) {
+        Board board = boardService.getBoardId(id);
+
+        return new BoardResponse(board.getId(), board.getTitle(), board.getContent());
+    }
 }
