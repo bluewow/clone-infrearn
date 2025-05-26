@@ -16,4 +16,8 @@ public class BoundedContextEntity extends BaseEntity{
     @Comment("상태")
     @Enumerated(EnumType.STRING)
     private Status status = Status.ACTIVE;
+
+    public void delete() {
+        this.status = Status.DELETED;
+    }
 }
