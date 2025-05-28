@@ -4,6 +4,7 @@ FOREIGN_KEY_CHECKS = 0;
 truncate table user;
 truncate table board;
 truncate table reply;
+truncate table notification;
 
 SET
 FOREIGN_KEY_CHECKS = 1;
