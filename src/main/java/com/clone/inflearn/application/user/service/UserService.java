@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Set;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -23,5 +26,9 @@ public class UserService {
         }
 
         return user;
+    }
+
+    public List<String> getUserName(List<Long> userIds) {
+        return userRepository.findUserNamesByUserIdIn(userIds);
     }
 }

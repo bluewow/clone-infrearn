@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -24,7 +22,7 @@ public class BoardService {
         return boardRepository.save(board);
     }
 
-    public Board getBoardId(Long boardId) {
+    public Board getBoardById(Long boardId) {
         return boardRepository.findById(boardId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND));
     }
@@ -32,4 +30,5 @@ public class BoardService {
     public Page<Board> getBoards(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
+
 }
