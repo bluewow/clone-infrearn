@@ -1,12 +1,13 @@
 package com.clone.inflearn.application.board.event;
 
-import com.clone.inflearn.application.board.repository.NotificationRepository;
 import com.clone.inflearn.application.board.service.NotificationService;
+import com.clone.inflearn.util.LogUtils;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Comment;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+//@Transactional
 @RequiredArgsConstructor
 @Service
 public class BoardEventNotificationHandler {
@@ -14,6 +15,7 @@ public class BoardEventNotificationHandler {
 
     @EventListener
     public void handleReplyCreated(ReplyCreatedEvent event) {
+        LogUtils.logTxInfo("댓글 이벤트 처리 시작");
         notificationService.createNotification(event.boardId);
     }
 }

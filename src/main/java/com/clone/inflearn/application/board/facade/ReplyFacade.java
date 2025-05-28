@@ -6,6 +6,7 @@ import com.clone.inflearn.application.board.event.ReplyCreatedEvent;
 import com.clone.inflearn.application.board.service.BoardService;
 import com.clone.inflearn.application.board.service.NotificationService;
 import com.clone.inflearn.application.board.service.ReplyService;
+import com.clone.inflearn.util.LogUtils;
 import com.clone.inflearn.util.auth.CustomPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -25,6 +26,7 @@ public class ReplyFacade {
         Board board = boardService.getBoardById(request.boardId);
 
         replyService.createReply(board, request.content, userId);
+        LogUtils.logTxInfo("댓글 이벤트 전");
         eventPublisher.publishEvent(new ReplyCreatedEvent(request.boardId));
 
     }
